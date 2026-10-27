@@ -53,10 +53,10 @@ export const AboutSection = () => {
         </motion.p>
 
         {/* 2-Column Layout with Vertical Divider on Desktop */}
-        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-12 md:gap-0">
+        <div className="grid grid-cols-12 items-start gap-0">
           {/* Kolom Kiri: Foto */}
-          <motion.div {...reveal} className="flex justify-center md:col-span-4 md:justify-start md:pr-8 lg:pr-12 md:sticky md:top-24">
-            <div className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-full">
+          <motion.div {...reveal} className="col-span-4 flex justify-start pr-3 md:pr-8 lg:pr-12 sticky top-24">
+            <div className="relative w-full">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-foreground/10 bg-foreground/5 shadow-sm">
                 <img
                   src={photoSrc}
@@ -68,12 +68,11 @@ export const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Garis Pembatas Vertikal (Desktop) & Horizontal (Mobile) */}
-          <div className="hidden h-full min-h-[500px] w-px bg-foreground/15 md:block md:col-span-1 md:mx-auto" aria-hidden="true"></div>
-          <div className="block h-px w-full bg-foreground/15 md:hidden" aria-hidden="true"></div>
+          {/* Garis Pembatas Vertikal */}
+          <div className="col-span-1 mx-auto h-full min-h-[500px] w-px bg-foreground/15" aria-hidden="true"></div>
 
           {/* Kolom Kanan: Tulisan, Edukasi, Pencapaian & Kontak */}
-          <div className="md:col-span-7 md:pl-8 lg:pl-12">
+          <div className="col-span-7 pl-3 md:pl-8 lg:pl-12">
             {/* Nama & Profil Singkat */}
             <motion.div {...reveal}>
               <h2 id="about-title" className="text-2xl font-black tracking-tight text-foreground leading-tight sm:text-3xl lg:text-4xl">
@@ -133,12 +132,12 @@ export const AboutSection = () => {
                 Pencapaian
               </motion.h3>
               <div className="border-t border-foreground/10 pt-3.5">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-2 gap-2 md:gap-4">
                   {achievements.map((item, index) => (
                     <motion.div
                       key={index}
                       {...reveal}
-                      className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/[0.02] p-4.5 transition-all duration-300 hover:border-amber-400/40 hover:bg-foreground/[0.04] shadow-xs"
+                      className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/[0.02] p-2.5 md:p-4.5 transition-all duration-300 hover:border-amber-400/40 hover:bg-foreground/[0.04] shadow-xs"
                     >
                       <div>
                         {/* Header: Logo & Tanggal */}

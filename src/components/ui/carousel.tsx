@@ -107,7 +107,7 @@ const Slide = ({
           onSelect(index);
         }
       }}
-      className={`group relative shrink-0 cursor-pointer select-none w-full md:w-[calc((100%-2*1.5rem)/3)] transition-all duration-300 ease-out [perspective:1000px] ${
+      className={`group relative shrink-0 cursor-pointer select-none w-[calc((100%-24px)/3)] md:w-[calc((100%-48px)/3)] transition-all duration-300 ease-out [perspective:1000px] ${
         isActive
           ? "scale-100 md:scale-[1.02] hover:scale-[1.04] hover:-translate-y-2.5 z-20"
           : "scale-95 md:scale-[0.93] hover:scale-[0.98] hover:-translate-y-2 z-10"
@@ -115,7 +115,7 @@ const Slide = ({
     >
       {/* 3D Moving Card Body */}
       <div
-        className={`relative flex flex-col justify-between overflow-hidden rounded-xl border text-white transition-all duration-300 h-[225px] sm:h-[240px] md:h-[250px] p-4 sm:p-5 ${
+        className={`relative flex flex-col justify-between overflow-hidden rounded-xl border text-white transition-all duration-300 h-[clamp(9.5rem,19vw,250px)] p-2.5 md:p-5 ${
           isActive
             ? "border-amber-400 shadow-2xl shadow-amber-500/25 ring-1 ring-amber-400/50 opacity-100 bg-[#1D1F2F] group-hover:border-amber-300 group-hover:shadow-amber-500/40"
             : "border-foreground/10 bg-[#171825] opacity-60 group-hover:opacity-95 group-hover:border-amber-400/40 group-hover:shadow-xl group-hover:shadow-black/60"
@@ -281,21 +281,14 @@ export function Carousel({
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  const isDesktop = containerWidth >= 768;
   const maxIndex = Math.max(0, n - 1);
 
-  // Calculate step distance per card
+  // Calculate step distance per card: always 3 cards visible (gap 24px desktop, 12px mobile)
   const getStep = useCallback(() => {
     if (containerWidth === 0) return 0;
-    // On desktop (md: >= 768px), exactly 3 cards fit with gap-6 (24px)
-    if (containerWidth >= 768) {
-      const gap = 24;
-      const cardWidth = (containerWidth - 2 * gap) / 3;
-      return cardWidth + gap;
-    }
-    // On mobile (< 768px), 1 card fits with gap-4 (16px)
-    const gap = 16;
-    return containerWidth + gap;
+    const gap = containerWidth >= 768 ? 24 : 12;
+    const cardWidth = (containerWidth - 2 * gap) / 3;
+    return cardWidth + gap;
   }, [containerWidth]);
 
   // Click previous: if at 0, swipe back to maxIndex
@@ -341,9 +334,9 @@ export function Carousel({
 
   const id = useId();
   const step = getStep();
-  // On desktop: offset by +step so that index 0 starts in the center slot (left slot empty).
+  // Offset by +step so that index 0 starts in the center slot (left slot empty).
   // When swiped to index 1, offset is 0, showing left (index 0), center (index 1), right (index 2).
-  const initialOffset = isDesktop ? step : 0;
+  const initialOffset = step;
   const translateOffset = initialOffset - currentIndex * step;
 
   // Faster swipe back when rewinding from last to 0
@@ -362,7 +355,7 @@ export function Carousel({
       {/* 3-Cards Track Container with headroom for scale & shadow */}
       <div className="w-full overflow-hidden py-4 md:py-6 -my-4 md:-my-6">
         <ul
-          className="flex gap-4 md:gap-6 items-center"
+          className="flex gap-[12px] md:gap-[24px] items-center"
           style={{
             transform: `translateX(${translateOffset}px)`,
             transition: !hasMounted

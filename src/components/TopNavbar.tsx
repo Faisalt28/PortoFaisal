@@ -82,7 +82,7 @@ export const TopNavbar = () => {
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-end">
             {/* Desktop Navigation Links */}
-            <nav className="hidden items-center gap-8 md:flex" aria-label="Main Navigation">
+            <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
               {NAV_ITEMS.map((item) => {
                 const isActive = activeSection === item.href.replace('#', '');
                 return (
@@ -112,7 +112,7 @@ export const TopNavbar = () => {
             {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-end text-foreground/80 hover:text-foreground md:hidden cursor-pointer"
+              className="flex md:hidden h-10 w-10 items-center justify-center rounded-xl bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 active:scale-95 transition-all cursor-pointer shadow-2xs"
               aria-label={mobileMenuOpen ? 'Tutup menu' : 'Buka menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -129,14 +129,14 @@ export const TopNavbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="border-b border-foreground/10 bg-background/80 backdrop-blur-xl px-6 py-6 sm:px-8 md:px-12 md:hidden shadow-xl"
+            className="border-b border-foreground/10 bg-background/95 backdrop-blur-2xl px-4 py-4 sm:px-6 md:hidden shadow-2xl"
           >
-            <div className="mx-auto w-full max-w-7xl">
-              <nav className="flex flex-col gap-4" aria-label="Mobile Navigation">
+            <div className="mx-auto w-full max-w-[1400px]">
+              <nav className="flex flex-col gap-2" aria-label="Mobile Navigation">
                 {NAV_ITEMS.map((item) => {
                   const isActive = activeSection === item.href.replace('#', '');
                   return (
@@ -144,14 +144,14 @@ export const TopNavbar = () => {
                       key={item.label}
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold tracking-wider transition-colors ${
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold tracking-wider transition-all active:scale-[0.98] ${
                         isActive
-                          ? 'bg-amber-400/15 text-amber-500'
-                          : 'text-foreground/70 hover:bg-foreground/5 hover:text-foreground'
+                          ? 'bg-amber-400/15 text-amber-500 border border-amber-400/30'
+                          : 'text-foreground/75 hover:bg-foreground/5 hover:text-foreground'
                       }`}
                     >
                       <span>{item.label}</span>
-                      {isActive && <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />}
+                      {isActive && <span className="h-2 w-2 rounded-full bg-amber-400 shadow-sm" />}
                     </a>
                   );
                 })}

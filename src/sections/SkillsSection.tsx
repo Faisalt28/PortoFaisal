@@ -60,11 +60,11 @@ export const SkillsSection = () => {
           <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-foreground/50 sm:text-sm">
             Hard Skills
           </h3>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-3 gap-2 md:gap-4">
             {hardSkills.map((category) => (
               <div
                 key={category.title}
-                className="group rounded-xl border border-foreground/10 bg-foreground/[0.02] p-4 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/[0.04]"
+                className="group rounded-xl border border-foreground/10 bg-foreground/[0.02] p-2.5 md:p-4 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/[0.04]"
               >
                 <div className="mb-3 flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground/5 transition-colors group-hover:bg-amber-400/20">
@@ -90,17 +90,17 @@ export const SkillsSection = () => {
         </motion.div>
 
         {/* 2. Soft Skills & Tools Row (Urutan: Soft Skills -> Tools) */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="grid grid-cols-12 gap-3 md:gap-6">
           {/* Soft Skills */}
-          <motion.div {...reveal} className="lg:col-span-5">
+          <motion.div {...reveal} className="col-span-5">
             <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-foreground/50 sm:text-sm">
               Soft Skills
             </h3>
-            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-2.5">
               {softSkills.map((skill) => (
                 <div
                   key={skill}
-                  className="flex items-center gap-3 rounded-xl border border-foreground/10 bg-foreground/[0.02] p-3.5 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/[0.04]"
+                  className="flex items-center gap-3 rounded-xl border border-foreground/10 bg-foreground/[0.02] p-2.5 md:p-3.5 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/[0.04]"
                 >
                   <span className="h-2 w-2 rounded-full bg-amber-400"></span>
                   <span className="text-sm font-semibold text-foreground">
@@ -112,15 +112,15 @@ export const SkillsSection = () => {
           </motion.div>
 
           {/* Tools */}
-          <motion.div {...reveal} className="lg:col-span-7">
+          <motion.div {...reveal} className="col-span-7">
             <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-foreground/50 sm:text-sm">
               Tools
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2.5 md:space-y-4">
               {toolsCategories.map((category) => (
                 <div
                   key={category.title}
-                  className="rounded-xl border border-foreground/10 bg-foreground/[0.02] p-4 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/[0.04]"
+                  className="rounded-xl border border-foreground/10 bg-foreground/[0.02] p-2.5 md:p-4 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/[0.04]"
                 >
                   <div className="mb-2.5 flex items-center gap-2">
                     <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground/5">

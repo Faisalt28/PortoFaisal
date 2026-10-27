@@ -67,7 +67,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
       {/* Main Page Content - Margins match main page (max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-12) */}
       <main className="mx-auto w-full max-w-[1400px] px-4 pt-4 pb-12 sm:px-6 sm:pt-6 sm:pb-16 md:px-8 lg:px-12">
         {/* 1. Header Section: Judul, Tech Stack / Tools & Skills Chips, Action Buttons (Center Aligned, Minimalist) */}
-        <section className="mb-6 sm:mb-8 flex flex-col items-center text-center max-w-4xl mx-auto">
+        <section className="mb-6 sm:mb-8 flex flex-col items-center text-center w-full mx-auto">
           {/* Judul Proyek */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-tight">
             {title}
@@ -217,7 +217,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
           ) : (
             /* Video / Main Landscape Screenshot Showcase for Web & ML */
-            <div className="relative aspect-video w-full max-w-5xl mx-auto overflow-hidden rounded-2xl border border-foreground/15 bg-black shadow-2xl">
+            <div className="relative aspect-video w-full mx-auto overflow-hidden rounded-2xl border border-foreground/15 bg-black shadow-2xl">
               {isPlayingVideo && details?.videoDemoUrl ? (
                 <video
                   src={details.videoDemoUrl}
@@ -284,7 +284,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 <span className="h-0.5 w-6 bg-amber-400"></span>
                 Key Insight
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3.5">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3.5">
                 {details.keyInsights.map((insight, idx) => (
                   <div
                     key={idx}
@@ -321,7 +321,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
         {/* 4. Bottom Pagination: Previous & Next Project Navigation */}
         <section className="w-full border-t border-foreground/10 mt-8 sm:mt-10 pt-6 sm:pt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-4">
             {prevProject ? (
               <button
                 onClick={() => onSelectProject?.(prevProject)}

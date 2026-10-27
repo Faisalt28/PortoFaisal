@@ -17,6 +17,13 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
+  /* Mobile: scale every rem-based size (text, padding, gap) with screen width,
+     so the PC layout fits proportionally instead of stacking into one column. */
+  @media (max-width: 767px) {
+    html {
+      font-size: clamp(10px, 2.9vw, 16px);
+    }
+  }
   body {
     margin: 0;
     background: var(--background);

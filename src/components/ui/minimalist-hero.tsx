@@ -44,25 +44,26 @@ export const MinimalistHero = ({
     <section
       id="home"
       className={cn(
-        // min-h-svh (not h-screen) keeps the hero stable on mobile browsers with dynamic toolbars
-        'relative mx-auto flex min-h-svh w-full flex-col items-center justify-between overflow-hidden bg-background px-4 py-6 font-sans sm:px-6 md:px-8 lg:px-12 md:py-10',
+        // Mobile: height follows screen width so the square photo fits fully (same composition as PC).
+        // Desktop: min-h-svh (not h-screen) keeps the hero stable on browsers with dynamic toolbars.
+        'relative mx-auto flex h-[max(100vw,22rem)] max-h-svh w-full flex-col items-center justify-between overflow-hidden bg-background px-4 font-sans sm:px-6 md:h-auto md:max-h-none md:min-h-svh md:px-8 md:py-10 lg:px-12',
         className
       )}
     >
       {/* Top Spacer to preserve vertical balance under fixed navbar */}
       <div className="h-14 sm:h-16 w-full shrink-0" aria-hidden="true" />
 
-      {/* Main Content Area */}
-      <div className="grid w-full max-w-[1400px] flex-grow grid-cols-1 content-end items-center gap-6 py-6 md:grid-cols-3 md:content-center md:gap-4 md:py-0">
+      {/* Main Content Area: always 3 columns (title | photo | name), like the PC layout */}
+      <div className="grid w-full max-w-[1400px] flex-grow grid-cols-3 content-center items-center gap-2 md:gap-4">
         {/* Left Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="z-20 order-3 text-center md:order-1 md:text-left"
+          className="z-20 text-left"
         >
           {stackedTitle && (
-            <h1 className="flex flex-col items-center md:items-start -space-y-1 sm:-space-y-1.5 md:-space-y-2 lg:-space-y-2.5 font-black italic tracking-tighter text-3xl min-[400px]:text-4xl sm:text-5xl md:text-3xl lg:text-5xl xl:text-6xl select-none leading-none">
+            <h1 className="flex flex-col items-start -space-y-0.5 sm:-space-y-1.5 md:-space-y-2 lg:-space-y-2.5 font-black italic tracking-tighter text-[clamp(0.85rem,3.7vw,3.5rem)] whitespace-nowrap select-none leading-none uppercase">
               <span className="block opacity-20 transition-opacity duration-300 hover:opacity-35">
                 {stackedTitle}
               </span>
@@ -85,19 +86,18 @@ export const MinimalistHero = ({
         </motion.div>
 
         {/* Spacer keeping the middle grid column empty on desktop (photo is a background layer) */}
-        <div className="hidden md:order-2 md:block" aria-hidden="true"></div>
+        <div aria-hidden="true"></div>
 
         {/* Full-height photo layer, anchored to the hero (the grid is not positioned) */}
         <div className="pointer-events-none absolute inset-0 z-10 flex items-end justify-center">
-          {/* Square wrapper: as tall as the hero, but never wider than 160vw (keeps the subject in frame on phones).
-              On mobile it is nudged left so the face (≈42% across the photo) sits near the screen center. */}
-          <div className="relative aspect-square h-[min(100%,160vw)] max-w-none shrink-0 translate-x-0">
+          {/* Square wrapper: scaled slightly down on mobile so it doesn't feel cramped, full on desktop */}
+          <div className="relative aspect-square h-[85%] sm:h-[90%] md:h-full max-w-none shrink-0">
             {/* Circle is centered on the photo and scales with it (66% of the photo size) */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              className="absolute inset-0 z-0 m-auto aspect-square w-[66%] rounded-full bg-amber-400"
+              className="absolute inset-0 z-0 m-auto aspect-square w-[60%] sm:w-[62%] md:w-[66%] rounded-full bg-amber-400"
             ></motion.div>
             <motion.img
               src={imageSrc}
@@ -122,9 +122,9 @@ export const MinimalistHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="z-20 order-2 flex items-center justify-center text-center md:order-3 md:justify-end md:text-right"
+          className="z-20 flex items-center justify-end text-right"
         >
-          <div className="flex flex-col items-center md:items-end -space-y-1 sm:-space-y-1.5 md:-space-y-2 lg:-space-y-2.5 font-black italic tracking-tighter text-2xl min-[400px]:text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl whitespace-nowrap select-none leading-none uppercase">
+          <div className="flex flex-col items-end -space-y-0.5 sm:-space-y-1.5 md:-space-y-2 lg:-space-y-2.5 font-black italic tracking-tighter text-[clamp(0.85rem,3.7vw,3.5rem)] whitespace-nowrap select-none leading-none uppercase">
             <span className="block opacity-20 transition-opacity duration-300 hover:opacity-35">
               {mainText}
             </span>
